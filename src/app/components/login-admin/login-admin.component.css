@@ -1,0 +1,109 @@
+.card-container.card {
+    max-width: 350px;
+    padding: 50px 50px;
+}
+
+.card {
+    background-color: white;
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 100px;
+    /* shadows and rounded borders */
+    /* -moz-border-radius: 2px; */
+    /* -webkit-border-radius: 2px; */
+    /* border-radius: 2px; */
+    /* -moz-box-shadow: 0px 2px 2px black; */
+    /* -webkit-box-shadow: 0px 2px 2px black; */
+    box-shadow: 0px 2px 2px black;
+}
+
+/* .profile-img-card {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+} */
+
+.exm
+{
+    margin-top: 50px;
+}
+
+.exm1
+{
+    margin-top: 20px;
+}
+
+.exm2
+{
+    margin-top: 30px;
+}
+
+.shadow0 {
+    font-size: 250%;
+    /* text-shadow: 5px 5px 5px black; */
+    color: rgb(3, 163, 255);
+    text-align: center;
+  }
+  .shadow1 {
+    font-size: 250%;
+    /* text-shadow: 5px 5px 5px blue; */
+    color: rgb(250, 2, 2);
+    text-align: center;
+  }
+  .shadow2 {
+    font-size: 250%;
+    /* text-shadow: 5px 5px 5px orange; */
+    color: rgb(250, 233, 4);
+    text-align: center;
+  }.shadow3{
+    font-size: 250%;
+    /* text-shadow: 5px 5px 5px brown; */
+    color: rgb(3, 163, 255);
+    text-align: center;
+  }.shadow4 {
+    font-size: 250%;
+    /* text-shadow: 5px 5px 5px rgb(66, 228, 228); */
+    color: rgb(43, 248, 2);
+    text-align: center;
+  }
+  .shadow5 {
+    font-size: 250%;
+    /* text-shadow: 5px 5px 5px magenta; */
+    color: rgb(250, 2, 2);
+    text-align: center;
+  }
+
+.shadow6 {
+    font-size: 250%;
+    /* text-shadow: 5px 5px 5px black; */
+    color: rgb(3, 163, 255);
+    text-align: center;
+  }
+  .shadow7 {
+    font-size: 250%;
+    /* text-shadow: 5px 5px 5px blue; */
+    color: rgb(250, 2, 2);
+    text-align: center;
+  }
+  .shadow8 {
+    font-size: 250%;
+    /* text-shadow: 5px 5px 5px orange; */
+    color: rgb(250, 233, 4);
+    text-align: center;
+  }.shadow9{
+    font-size: 250%;
+    /* text-shadow: 5px 5px 5px brown; */
+    color: rgb(3, 163, 255);
+    text-align: center;
+  }.shadowa {
+    font-size: 250%;
+    /* text-shadow: 5px 5px 5px rgb(66, 228, 228); */
+    color: rgb(43, 248, 2);
+    text-align: center;
+  }
+ 
