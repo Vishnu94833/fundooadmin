@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { FormsModule } from '@angular/forms';
+// import { HttpService } from './service/service.service';
 
 import { ReactiveFormsModule }    from '@angular/forms';
 
@@ -21,9 +22,10 @@ import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-
     BrowserModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+   
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
