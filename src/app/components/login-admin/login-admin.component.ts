@@ -29,6 +29,7 @@ export class LoginAdminComponent implements OnInit {
       data:data,
       success: function(result){
         console.log("success",result);
+        localStorage.setItem('token',result.id);
         $(location).attr('href', '/dashboardAdmin')
       },
     error: function(error){

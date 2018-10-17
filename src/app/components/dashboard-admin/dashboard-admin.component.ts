@@ -13,7 +13,7 @@ export class DashboardAdminComponent implements OnInit {
   ngOnInit() 
   {
     $(document).ready(function(){
-      $('#card').click(function(){
+      $(function(){
       $.ajax({
         url:'http://34.213.106.173/api/user/getAdminUserList',
         type:'GET',
@@ -35,6 +35,42 @@ export class DashboardAdminComponent implements OnInit {
       })
     })
     })
+    $(document).ready(function(){
+      var token = localStorage.getItem('token');
+      $.ajax({
+      type: "GET",/**posting the data */
+      url:'http://34.213.106.173/api/user/UserStatics',
+    headers:{
+        'Authorization':token,
+
+
+      },
+
+      
+      error:function(response){/**if error exists then print the alert */
+        console.log('Error in login');
+        alert("Enter all the details");
+        
+      },
+      success:function(response){
+        console.log("successfull");
+        console.log(response);
+        var arr=response.data.details;
+        var html='';
+        for(let index=0;index<arr.length;index++)
+        {
+          html+="<div class='card'>";
+          html+="<div class='card-header'>"+arr[index].service+"</div>";
+          html+="<div class='card-body'>"+arr[index].count+"</div>";
+          html+="</div";
+          $("#services").html(html);
+        }
+      }
+      
+    })
+      
+
+   })
 
 }
 
