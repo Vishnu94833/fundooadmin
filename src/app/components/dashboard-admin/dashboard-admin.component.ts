@@ -25,7 +25,11 @@ export class DashboardAdminComponent implements OnInit {
         }
          
         $('#example').DataTable( {
-            data: users
+            data: users,
+            deferRender:true,
+            scrollY:200,
+            scrollCollapse:true,
+            scroller:true
         } );
     
         },
@@ -57,19 +61,29 @@ export class DashboardAdminComponent implements OnInit {
         console.log(response);
         var arr=response.data.details;
         var html='';
+                 
+        html+="<div class='row'fxLayout='row' fxLayoutAlign='space-between center'  padding-right='30px' >";
         for(let index=0;index<arr.length;index++)
         {
-          html+="<div class='card'>";
-          html+="<div class='card-header'>"+arr[index].service+"</div>";
+          html+="<div class='col-sm-6'><div class='card' style='max-width: 18rem;'>";
+          html+="<div class='card-header '>"+arr[index].service+"</div>";
           html+="<div class='card-body'>"+arr[index].count+"</div>";
-          html+="</div";
+          html+="</div></div>";
           $("#services").html(html);
         }
+        html+="</div>";
+
       }
       
     })
       
 
+   })
+   $(document).ready(function(){
+     $('#logout').on('click',function(){
+      $(location).attr('href', '/loginAdmin')
+      localStorage.removeItem('token');
+     })
    })
 
 }
