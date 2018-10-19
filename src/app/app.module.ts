@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { FormsModule } from '@angular/forms';
 // import { HttpService } from './service/service.service';
 
-import { ReactiveFormsModule }    from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginAdminComponent } from './components/login-admin/login-admin.component';
 import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
+import { AuthserviceService } from './authservice.service';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,11 @@ import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-
     BrowserModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule,
-   
+    FormsModule
+
+
   ],
-  providers: [ ],
+  providers: [AuthserviceService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

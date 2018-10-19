@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
-import 'datatables.net'
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import 'datatables.net';
 @Component({
   selector: 'app-dashboard-admin',
   templateUrl: './dashboard-admin.component.html',
@@ -8,84 +9,133 @@ import 'datatables.net'
 })
 export class DashboardAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (localStorage.getItem('currentUser')) {
+      // logged in so return true
+      return true;
+    }
 
-  ngOnInit() 
-  {
-    $(document).ready(function(){
-      $(function(){
-      $.ajax({
-        url:'http://34.213.106.173/api/user/getAdminUserList',
-        type:'GET',
-        success: function(result){
-          // console.log("success",result);
-          var users = [];
-        for ( var i=0 ; i<result.data.data.length ; i++ ) {
-            users.push( [ i+1,result.data.data[i].firstName,result.data.data[i].lastName,result.data.data[i].email,result.data.data[i].service ] );
-        }
-         
-        $('#example').DataTable( {
-            data: users,
-            deferRender:true,
-            scrollY:200,
-            scrollCollapse:true,
-            scroller:true
-        } );
-    
-        },
-      error: function(error){
-        console.log(error);
-      }
+    // not logged in so redirect to login page with the return url
+    this.router.navigate(['/loginAdmin'], { queryParams: { returnUrl: state.url } });
+    return false;
+  }
+  ngOnInit() {
+    $(document).ready(function () {
+      $(function () {
+        $.ajax({
+          url: 'http://34.213.106.173/api/user/getAdminUserList',
+          type: 'GET',
+          success: function (result) {
+            // console.log("success",result);
+            var users = [];
+            for (var i = 0; i < result.data.data.length; i++) {
+              users.push([i + 1, result.data.data[i].firstName, result.data.data[i].lastName, result.data.data[i].email, result.data.data[i].service]);
+            }
+
+            var table = $('#example').DataTable({
+              data: users,
+              deferRender: true,
+              scrollY: 200,
+              scrollCollapse: true,
+              scroller: true
+            });
+            $('#example tbody').on('click', 'tr', function () {
+              var id = this.id;
+              console.log(id);
+              var myindex=table.row(this).index();
+              var index = $.inArray(id, users);
+              console.log(myindex);
+              if ( index === -1 ) {
+                  users.push( id );
+              } else {
+                 users.splice( index, 1 );
+              }
+              $(this).toggleClass('selected');
+             console.log(result.data.data[myindex].firstName)
+              $("#firstName").text(result.data.data[myindex].firstName);
+              $("#lastName").text(result.data.data[myindex].lastName);
+              $("#role").text(result.data.data[myindex].role);
+              $("#service").text(result.data.data[myindex].service);
+              $("#createdDate").text(result.data.data[myindex].createdDate);
+              $("#modifiedDate").text(result.data.data[myindex].modifiedDate);
+              $("#email").text(result.data.data[myindex].email);
+
+              $("#popup").click();
+            })
+          },
+          
+          error: function (error) {
+            console.log(error);
+          }
+        })
       })
     })
-    })
-    $(document).ready(function(){
-      var token = localStorage.getItem('token');
+    var token = localStorage.getItem('token');
+    $(document).ready(function () {
       $.ajax({
-      type: "GET",/**posting the data */
-      url:'http://34.213.106.173/api/user/UserStatics',
-    headers:{
-        'Authorization':token,
+        type: "GET",/**posting the data */
+        url: 'http://34.213.106.173/api/user/UserStatics',
+        headers: {
+          'Authorization': token,
 
 
-      },
+        },
 
-      
-      error:function(response){/**if error exists then print the alert */
-        console.log('Error in login');
-        alert("Enter all the details");
-        
-      },
-      success:function(response){
-        console.log("successfull");
-        console.log(response);
-        var arr=response.data.details;
-        var html='';
-                 
-        html+="<div class='row'fxLayout='row' fxLayoutAlign='space-between center'  padding-right='30px' >";
-        for(let index=0;index<arr.length;index++)
-        {
-          html+="<div class='col-sm-6'><div class='card' style='max-width: 18rem;'>";
-          html+="<div class='card-header '>"+arr[index].service+"</div>";
-          html+="<div class='card-body'>"+arr[index].count+"</div>";
-          html+="</div></div>";
-          $("#services").html(html);
+
+        error: function (response) {/**if error exists then print the alert */
+          console.log('Error in login');
+          alert("Enter all the details");
+
+        },
+        success: function (response) {
+          console.log("successfull");
+          console.log(response);
+          var arr = response.data.details;
+          var html = '';
+
+          html += "<div class='row'fxLayout='row' fxLayoutAlign='space-between center'  padding-right='30px' >";
+          for (let i = 0; i < arr.length; i++) {
+            html += "<div class='col-sm-6'><div class='card  ' style='max-width: 18rem;'>";
+            html += "<div class='card-header  text-black '>" + arr[i].service + "</div>";
+            html += "<div class='card-body'>" + arr[i].count + "</div>";
+            html += "</div></div>";
+            $("#services").html(html);
+          }
+          html += "</div>";
+
         }
-        html+="</div>";
 
-      }
-      
+      })
+
+
     })
-      
 
-   })
-   $(document).ready(function(){
-     $('#logout').on('click',function(){
-      $(location).attr('href', '/loginAdmin')
-      localStorage.removeItem('token');
-     })
-   })
+    $(document).ready(function () {
+      // var token = localStorage.getItem('token');
+      $('#logout').on('click', function () {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+        $.ajax({
+          url: 'http://34.213.106.173/api/user/logout',
+          type: 'POST',
+          headers: {
+            'Authorization': token
+          },
+          success: function (result) {
+            localStorage.removeItem('token');
+            $(location).attr('href', '/loginAdmin')
+            console.log("success", result);
+          },
+          error: function (error) {
+            console.log(error)
+          }
+        })
+      })
+    })
+    $('#basicModal').on('shown.bs.modal', function (e) {
+      alert('Modal is successfully shown!');
+    });
 
-}
+
+  }
 
 }
