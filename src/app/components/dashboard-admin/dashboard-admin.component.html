@@ -1,23 +1,24 @@
-<div class="container">
-  <div style="text-align:center">
+<div class="card-container">
+  <div style="text-align:center"  class="bg-dark text-white">
     <h2>DashboardAdmin</h2>
+  
+    <div >
+      <button class="btn btn-light" id="logout">Logout</button>
+    </div>
   </div>
-  <div class="mov">
-    <button class="btn btn-dark" id="logout">Logout</button>
-  </div>
-
+  
   <div align="center">
     <div class="col-lg-4"></div>
     <div class="col-lg-4">
-      <div id="services"></div>
+      <div class="card " id="services"></div>
     </div>
   </div>
   <div class="col-lg-4"></div>
   <div class="card  shadow text-black bg-light ">
     <table id="example" class="table  table-row table-condensed table-bordered display nowrap"
       style="width:100%">
-      <thead class="text-black">
-        <tr class="table-row  text-black shadow">
+      <thead class="text-white bg-dark">
+        <tr class="table-row table-striped text-black shadow">
           <th scope="col ">#</th>
           <th scope="col">firstname</th>
           <th scope="col">lastname</th>
@@ -30,28 +31,30 @@
 </div>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="popup" style="display:none">
-  Launch demo modal
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+  id="popup" style="display:none">
+
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content rounded">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Personal Details</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-       FirstName :  <label id="firstName"></label><br>
-       LastName : <label id="lastName"></label><br>
-       <label id="role"></label><br>
-       <label id="service"></label><br>
-       <label id="createdDate"></label><br>
-       <label id="modifiedData"></label><br>
-       Email : <label id="email"></label><br>
+      <div class="modal-body ">
+        FirstName : <label id="firstName"></label><br> 
+        LastName : <label id="lastName"></label><br>        
+        Role : <label id="role"></label><br> 
+        Service : <label id="service"></label><br> 
+        Created Date : <label id="createdDate"></label><br> 
+        <!-- Modified Data : <label id="modifiedData"></label><br>         -->
+        Email : <label id="email"></label><br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

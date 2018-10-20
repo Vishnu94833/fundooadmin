@@ -44,21 +44,14 @@ export class DashboardAdminComponent implements OnInit {
               var id = this.id;
               console.log(id);
               var myindex=table.row(this).index();
-              var index = $.inArray(id, users);
               console.log(myindex);
-              if ( index === -1 ) {
-                  users.push( id );
-              } else {
-                 users.splice( index, 1 );
-              }
-              $(this).toggleClass('selected');
-             console.log(result.data.data[myindex].firstName)
+              console.log(result.data.data[myindex].firstName)
               $("#firstName").text(result.data.data[myindex].firstName);
               $("#lastName").text(result.data.data[myindex].lastName);
               $("#role").text(result.data.data[myindex].role);
               $("#service").text(result.data.data[myindex].service);
               $("#createdDate").text(result.data.data[myindex].createdDate);
-              $("#modifiedDate").text(result.data.data[myindex].modifiedDate);
+              // $("#modifiedDate").text(result.data.data[myindex].modifiedDate);
               $("#email").text(result.data.data[myindex].email);
 
               $("#popup").click();
@@ -97,7 +90,7 @@ export class DashboardAdminComponent implements OnInit {
           html += "<div class='row'fxLayout='row' fxLayoutAlign='space-between center'  padding-right='30px' >";
           for (let i = 0; i < arr.length; i++) {
             html += "<div class='col-sm-6'><div class='card  ' style='max-width: 18rem;'>";
-            html += "<div class='card-header  text-black '>" + arr[i].service + "</div>";
+            html += "<div class='card-header bg-dark text-white '>" + arr[i].service + "</div>";
             html += "<div class='card-body'>" + arr[i].count + "</div>";
             html += "</div></div>";
             $("#services").html(html);

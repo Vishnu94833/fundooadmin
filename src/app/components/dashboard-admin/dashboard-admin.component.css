@@ -1,5 +1,5 @@
 .card {
-    /* background-color: rgb(28, 175, 219); */
+    /* background-color: rgb(255, 0, 0); */
     /* just in case there no content*/
     padding: 10px 10px 10px;
     margin: 0 auto 1px;
@@ -21,13 +21,20 @@
     
 .card-container.card {
     max-width: 500px;
-    padding: 100px 50px;  
+    padding: 100px 100px; 
+    margin-top: -600px;
 }
 .mov
 {
-    margin-left: 95%;
+    margin-left: 94%;
 }
 .exmp
 {
     padding-right: 100px;
+}
+.center
+{
+    margin-top: 20px;
+
+    text-align: center;
 }
