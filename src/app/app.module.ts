@@ -12,12 +12,14 @@ import { LoginAdminComponent } from './components/login-admin/login-admin.compon
 import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
 import { AuthserviceService } from './authservice.service';
 import { AuthGuard } from './auth.guard';
+import { QuestionanswerComponent } from './questionanswer/questionanswer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginAdminComponent,
-    DashboardAdminComponent
+    DashboardAdminComponent,
+    QuestionanswerComponent
   ],
   imports: [
     AppRoutingModule,

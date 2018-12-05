@@ -26,8 +26,8 @@ export class DashboardAdminComponent implements OnInit {
         $.ajax({
           url: 'http://34.213.106.173/api/user/getAdminUserList',
           type: 'GET',
-          success: function (result) {
-            // console.log("success",result);
+
+          success: function (result) {  
             var users = [];
             for (var i = 0; i < result.data.data.length; i++) {
               users.push([i + 1, result.data.data[i].firstName, result.data.data[i].lastName, result.data.data[i].email, result.data.data[i].service]);
@@ -43,7 +43,7 @@ export class DashboardAdminComponent implements OnInit {
             $('#example tbody').on('click', 'tr', function () {
               var id = this.id;
               console.log(id);
-              var myindex=table.row(this).index();
+              var myindex = table.row(this).index();
               console.log(myindex);
               console.log(result.data.data[myindex].firstName)
               $("#firstName").text(result.data.data[myindex].firstName);
@@ -51,13 +51,11 @@ export class DashboardAdminComponent implements OnInit {
               $("#role").text(result.data.data[myindex].role);
               $("#service").text(result.data.data[myindex].service);
               $("#createdDate").text(result.data.data[myindex].createdDate);
-              // $("#modifiedDate").text(result.data.data[myindex].modifiedDate);
               $("#email").text(result.data.data[myindex].email);
-
               $("#popup").click();
             })
           },
-          
+
           error: function (error) {
             console.log(error);
           }
@@ -74,7 +72,8 @@ export class DashboardAdminComponent implements OnInit {
         },
 
 
-        error: function (response) {/**if error exists then print the alert */
+        error: function (error) {/**if error exists then print the alert */
+          console.log(error);
           console.log('Error in login');
           alert("Enter all the details");
 
@@ -103,9 +102,8 @@ export class DashboardAdminComponent implements OnInit {
     })
 
     $(document).ready(function () {
-      // var token = localStorage.getItem('token');
-      $('#logout').on('click', function () {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-        $.ajax({
+      $('#logout').on('click', function () {
+        $.ajax({  
           url: 'http://34.213.106.173/api/user/logout',
           type: 'POST',
           headers: {
@@ -122,10 +120,29 @@ export class DashboardAdminComponent implements OnInit {
         })
       })
     })
+
+
     $('#basicModal').on('shown.bs.modal', function (e) {
       alert('Modal is successfully shown!');
     });
 
+
+    $(document).ready(function () {
+      $.ajax({
+        type: 'GET',
+        url: 'http://34.213.106.173/api/questionAndAnswerNotes/getUnApprovedAnswer',
+        headers:
+        {
+          'Authorization': token
+        },
+        success: function (result) {
+          console.log(result);
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      })
+    })
 
   }
 
