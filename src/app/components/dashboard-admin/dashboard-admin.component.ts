@@ -71,8 +71,6 @@ export class DashboardAdminComponent implements OnInit {
         url: 'http://34.213.106.173/api/user/UserStatics',
         headers: {
           'Authorization': token,
-
-
         },
 
 
