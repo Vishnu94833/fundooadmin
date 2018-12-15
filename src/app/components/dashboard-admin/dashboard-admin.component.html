@@ -1,18 +1,24 @@
 <div class="card-container">
   <div style="text-align:center"  class="bg-dark text-white">
     <h2>DashboardAdmin</h2>
-  
+
     <div align="right">
+        <span><button class="btn btn-light question" (click)="goToCart()">Cart</button></span>
+      <span><button class="btn btn-light question" (click)="question()">Q & A</button></span>
       <button class="btn btn-light" id="logout">Logout</button>
+      
     </div>
+
   </div>
   
   <div align="center">
     <div class="col-lg-4"></div>
     <div class="col-lg-4">
       <div class="card " id="services"></div>
+     
     </div>
   </div>
+  <app-loader align="center" id="hide"></app-loader>
   <div class="col-lg-4"></div>
   <div class="card  shadow text-black bg-light ">
     <table id="example" class="table  table-row table-condensed table-bordered display nowrap"
@@ -63,3 +69,10 @@
     </div>
   </div>
 </div>
+
+<!-- 
+<div class="spinner" *ngIf="!show">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div> -->

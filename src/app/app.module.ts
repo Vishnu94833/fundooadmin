@@ -12,14 +12,19 @@ import { LoginAdminComponent } from './components/login-admin/login-admin.compon
 import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
 import { AuthserviceService } from './authservice.service';
 import { AuthGuard } from './auth.guard';
-import { QuestionanswerComponent } from './questionanswer/questionanswer.component';
+import { QuestionanswerComponent } from '../app/components/questionanswer/questionanswer.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { OrdercompleteComponent } from './components/ordercomplete/ordercomplete.component';
+// import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginAdminComponent,
     DashboardAdminComponent,
-    QuestionanswerComponent
+    QuestionanswerComponent,
+    LoaderComponent,
+    OrdercompleteComponent
   ],
   imports: [
     AppRoutingModule,

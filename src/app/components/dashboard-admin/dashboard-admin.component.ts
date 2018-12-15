@@ -20,6 +20,16 @@ export class DashboardAdminComponent implements OnInit {
     this.router.navigate(['/loginAdmin'], { queryParams: { returnUrl: state.url } });
     return false;
   }
+
+  private show=false;
+
+  question() {
+    $(location).attr('href', '/questionanswer')
+  }
+  goToCart(){
+    $(location).attr('href', '/ordercomplete')
+  }
+
   ngOnInit() {
     $(document).ready(function () {
       $(function () {
@@ -27,7 +37,8 @@ export class DashboardAdminComponent implements OnInit {
           url: 'http://34.213.106.173/api/user/getAdminUserList',
           type: 'GET',
 
-          success: function (result) {  
+          success: function (result) {
+            this.show=true;
             var users = [];
             for (var i = 0; i < result.data.data.length; i++) {
               users.push([i + 1, result.data.data[i].firstName, result.data.data[i].lastName, result.data.data[i].email, result.data.data[i].service]);
@@ -79,6 +90,7 @@ export class DashboardAdminComponent implements OnInit {
 
         },
         success: function (response) {
+         
           console.log("successfull");
           console.log(response);
           var arr = response.data.details;
@@ -93,7 +105,7 @@ export class DashboardAdminComponent implements OnInit {
             $("#services").html(html);
           }
           html += "</div>";
-
+          // this.show=true;
         }
 
       })
@@ -103,16 +115,18 @@ export class DashboardAdminComponent implements OnInit {
 
     $(document).ready(function () {
       $('#logout').on('click', function () {
-        $.ajax({  
+        $.ajax({
           url: 'http://34.213.106.173/api/user/logout',
           type: 'POST',
           headers: {
             'Authorization': token
           },
           success: function (result) {
+            
             localStorage.removeItem('token');
             $(location).attr('href', '/loginAdmin')
             console.log("success", result);
+            // this.show=true;
           },
           error: function (error) {
             console.log(error)
@@ -121,6 +135,12 @@ export class DashboardAdminComponent implements OnInit {
       })
     })
 
+
+    $(document).ready(function () {
+      $('#question').on('click', function () {
+        this.router.navigate('/questionanswer')
+      })
+    })
 
     $('#basicModal').on('shown.bs.modal', function (e) {
       alert('Modal is successfully shown!');
@@ -136,6 +156,7 @@ export class DashboardAdminComponent implements OnInit {
           'Authorization': token
         },
         success: function (result) {
+        $("#hide").hide();
           console.log(result);
         },
         error: function (error) {
